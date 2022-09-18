@@ -19,15 +19,15 @@ import javax.inject.Inject
 class ImageViewModel
 @Inject
 constructor(
-    private val usecases: UseCases,
+    private val useCases: UseCases,
 ) : ViewModel() {
 
-    val postListLiveData = MutableLiveData<DataState<Data>>()
+    val imageListLiveData = MutableLiveData<DataState<Data>>()
 
     fun getPostList() {
-        postListLiveData.value = DataState.Loading()
-        usecases.getData().onEach {
-            postListLiveData.value = it
+        imageListLiveData.value = DataState.Loading()
+        useCases.getData().onEach {
+            imageListLiveData.value = it
         }.launchIn(viewModelScope)
     }
 }

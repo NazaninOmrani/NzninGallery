@@ -85,6 +85,18 @@ dependencies {
     def hilt_version = "2.38"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //Test
+    testImplementation "androidx.test:runner:1.4.0"
+    testImplementation "androidx.test.ext:junit:1.1.3"
+    testImplementation "androidx.test.espresso:espresso-core:3.4.0"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation "androidx.fragment:fragment-testing:1.5.2"
+    testImplementation "org.mockito:mockito-inline:2.13.0"
+    testImplementation "junit:junit:4+"
+    testImplementation "pl.pragmatists:JUnitParams:1.1.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
 }
 
 kapt {

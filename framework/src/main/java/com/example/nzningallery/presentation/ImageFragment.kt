@@ -41,6 +41,7 @@ class ImageFragment : Fragment() {
         rootView = FrameLayout(requireContext())
 
         recyclerView = RecyclerView(requireContext())
+        recyclerView.id=R.id.image_listView
         recyclerView.layoutManager =
             GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
         rootView.addView(
@@ -54,6 +55,7 @@ class ImageFragment : Fragment() {
         )
 
         progressBar = ProgressBar(requireContext())
+        progressBar.id=R.id.progress
         progressBar.visibility = View.GONE
         rootView.addView(
             progressBar, LayoutHelper.createFrame(
@@ -85,7 +87,7 @@ class ImageFragment : Fragment() {
     }
 
     private fun getProductResponse() {
-        imageViewModel.postListLiveData.observe(viewLifecycleOwner) { dataState ->
+        imageViewModel.imageListLiveData.observe(viewLifecycleOwner) { dataState ->
             when (dataState) {
                 is DataState.Success<Data> -> {
                     displayProgressBar(false)
