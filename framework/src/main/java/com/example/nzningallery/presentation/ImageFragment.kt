@@ -40,10 +40,11 @@ class ImageFragment : Fragment() {
     ): View {
         rootView = FrameLayout(requireContext())
 
-        recyclerView = RecyclerView(requireContext())
-        recyclerView.id=R.id.image_listView
-        recyclerView.layoutManager =
-            GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
+        recyclerView = RecyclerView(requireContext()).apply {
+            id = R.id.image_listView
+            layoutManager =
+                GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
+        }
         rootView.addView(
             recyclerView, LayoutHelper.createFrame(
                 LayoutHelper.MATCH_PARENT,
@@ -54,9 +55,10 @@ class ImageFragment : Fragment() {
             )
         )
 
-        progressBar = ProgressBar(requireContext())
-        progressBar.id=R.id.progress
-        progressBar.visibility = View.GONE
+        progressBar = ProgressBar(requireContext()).apply {
+            id = R.id.progress
+            visibility = View.GONE
+        }
         rootView.addView(
             progressBar, LayoutHelper.createFrame(
                 LayoutHelper.WRAP_CONTENT,
@@ -65,10 +67,11 @@ class ImageFragment : Fragment() {
             )
         )
 
-        textView = TextView(requireContext())
-        textView.visibility = View.GONE
-        textView.typeface = ResourcesCompat.getFont(requireContext(), R.font.main_font)
-        textView.setTextColor(R.color.teal_700)
+        textView = TextView(requireContext()).apply {
+            visibility = View.GONE
+            typeface = ResourcesCompat.getFont(requireContext(), R.font.main_font)
+            setTextColor(R.color.teal_700)
+        }
         rootView.addView(
             textView, LayoutHelper.createFrame(
                 LayoutHelper.WRAP_CONTENT,
@@ -95,8 +98,10 @@ class ImageFragment : Fragment() {
                 }
                 is DataState.Error -> {
                     displayProgressBar(false)
-                    textView.visibility = View.VISIBLE
-                    textView.text = dataState.exception.message.toString()
+                    textView.apply {
+                        visibility = View.VISIBLE
+                        text = dataState.exception.message.toString()
+                    }
                 }
                 is DataState.Loading -> {
                     displayProgressBar(true)
@@ -112,5 +117,4 @@ class ImageFragment : Fragment() {
     private fun appendProductData(products: Data) {
         recyclerView.adapter = context?.let { ImageAdapter(products, it) }
     }
-
 }
